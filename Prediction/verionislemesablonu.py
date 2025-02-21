@@ -5,7 +5,7 @@ import pandas as pd
 
 #2.veri onisleme
 #2.1.veri yukleme
-veriler = pd.read_csv('satislar.csv')
+veriler = pd.read_csv('veriler.csv')
 #pd.read_csv("veriler.csv")
 #test
 print(veriler)
@@ -47,11 +47,14 @@ lr.fit(x_train,y_train)
 tahmin=lr.predict(x_test)
 
 x_train=x_train.sort_index()
-y_train
+y_train=y_train.sort_index()
+
 plt.plot(x_train,y_train)
+plt.plot(x_test,lr.predict(x_test))
 
-
-
+plt.title("aylara göre satış")
+plt.xlabel("Aylar")
+plt.ylabel("Satışlar")
 
 
 
