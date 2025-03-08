@@ -65,7 +65,7 @@ from sklearn.preprocessing import StandardScaler
 sc1=StandardScaler()
 x_olcekli=sc1.fit_transform(X)
 sc2=StandardScaler()
-y_olcekli=sc2.fit_transform(Y)
+y_olcekli=np.ravel(sc2.fit_transform(Y.reshape(-1,1)))
 
 from sklearn.svm import SVR
 
@@ -78,6 +78,15 @@ plt.show()
 
 print(svr_reg.predict(11))
 print(svr_reg.predict(6.6))
+
+
+
+
+
+
+
+
+
 
 
 
