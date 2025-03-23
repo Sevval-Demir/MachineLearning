@@ -1,4 +1,3 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -38,3 +37,27 @@ print(y_test)
 from sklearn.metrics import confusion_matrix
 cm=confusion_matrix(y_test,y_pred)
 print(cm)
+
+from sklearn.neighbors import KNeighborsClassifier
+knn=KNeighborsClassifier(n_neighbors=1,metric='minkowski')
+knn.fit(X_train, y_train)
+#doğru veriler ile doğru algoritmaları kullanmak önemli
+y_pred=knn.predict(X_test)
+
+cm=confusion_matrix(y_test, y_pred)
+print(cm)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
