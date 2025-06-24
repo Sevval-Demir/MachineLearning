@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun 24 21:58:55 2025
+Created on Tue Jun 24 22:55:26 2025
 
 @author: sevva
 """
@@ -11,7 +11,7 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 
 #2.1 Veri Yukleme
-veriler=pd.read_csv('veriler.csv')
+veriler=pd.read_excel('Iris.xlsx')
 
 x=veriler.iloc[:,1:4].values #bagimsiz degiskenler
 y=veriler.iloc[:,4].values #bagimli degisken
@@ -103,9 +103,62 @@ print(y_proba[:,0])
 
 # 7. ROC,TPR,FPR degerleri
 from sklearn import metrics
-fpr,tpr,thold=metrics.roc_curve(y_test, y_proba[:,0],pos_label='e')
-print(fpr)
-print(tpr)
+target_class='Iris-setosa'
+y_binary=np.where(y_test==target_class,1,0)
+target_index=list(rfc.classes_).index(target_class)
+fpr,tpr,thold=metrics.roc_curve(y_binary, y_proba[:,target_index],pos_label=1)
+print("False Positive Rate: ",fpr)
+print("True Positive Rate: ",tpr)
+
+
+# 8. ROC egrisi
+plt.figure(figsize=(8,6))
+plt.plot(fpr, tpr,color='darkorange',label='ROC curve (Iris-setosa)')
+plt.plot([0,1],[0,1],'k--',label='Random guess')
+plt.xlim([0.0,1.0])
+plt.ylim([0.0,1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve - Iris-setosa (Random Forest)')
+plt.legend(loc="lower right")
+plt.grid(True)
+plt.show()
+
+from sklearn.decomposition import PCA
+from mpl_toolkits.mplot3d import Axes3D
+
+#PCA ile 3 boyuta indirgeme
+pca=PCA(n_components=3)
+X_reduced=pca.fit_transform(x)
+
+fig=plt.figure(figsize=(10,8))
+ax=fig.add_subplot(111,projection='3d')
+
+for label,color in zip(np.unique(y),['r','g','b']):
+    ax.scatter(
+        X_reduced[y==label,0],
+        X_reduced[y==label,1],
+        X_reduced[y==label,2],
+        label=label,
+        color=color,
+        edgecolors='k',
+        s=60
+        )
+ax.set_title("Iris Dataset (PCA 3D)")
+ax.set_xlabel("1st Principal Component")
+ax.set_ylabel("2nd Principal Component")
+ax.set_zlabel("3rd Principal Component")
+ax.legend()
+plt.show()
+
+
+
+
+
+
+
+
+
 
 
 
