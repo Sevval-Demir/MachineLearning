@@ -70,4 +70,31 @@ cm = confusion_matrix(y_test, yPred)
 print("\nGNB")
 print(cm)
 
+from sklearn.tree import DecisionTreeClassifier
+dtc=DecisionTreeClassifier(criterion='entropy')
+
+
+dtc.fit(X_train,y_train)
+y_pred=dtc.predict(X_test)
+
+y_pred=gnb.predict(X_test)
+cm = confusion_matrix(y_test, yPred)
+print("\nDTC")
+print(cm)
+
+from sklearn.ensemble import RandomForestClassifier
+
+rfc=RandomForestClassifier(n_estimators=10,criterion='entropy')
+rfc.fit(X_train,y_train)
+
+y_pred=rfc.predict(X_test)
+cm = confusion_matrix(y_test, yPred)
+print("\nRFC")
+print(cm)
+
+
+
+
+
+
 

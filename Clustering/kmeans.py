@@ -26,8 +26,18 @@ for i in range (1,10):
     sonuclar.append(kmeans.inertia_) #wcss değerleri
     
 plt.plot(range(1,10),sonuclar)
+plt.show()
 
+#HC
+from sklearn.cluster import AgglomerativeClustering
+ac=AgglomerativeClustering(n_clusters=3,metric='euclidean',linkage='ward')
+Y_tahmin=ac.fit_predict(X)
+print(Y_tahmin)
 
+plt.scatter(X[Y_tahmin==0,0],X[Y_tahmin==0,1],s=100,c='red')
+plt.scatter(X[Y_tahmin==1,0],X[Y_tahmin==1,1],s=100,c='green')
+plt.scatter(X[Y_tahmin==2,0],X[Y_tahmin==2,1],s=100,c='blue')
+plt.show()
 
 
 
