@@ -26,7 +26,7 @@ for i in range (1,10):
     sonuclar.append(kmeans.inertia_) #wcss değerleri
     
 plt.plot(range(1,10),sonuclar)
-plt.show()
+
 
 #HC
 from sklearn.cluster import AgglomerativeClustering
@@ -39,12 +39,7 @@ plt.scatter(X[Y_tahmin==1,0],X[Y_tahmin==1,1],s=100,c='green')
 plt.scatter(X[Y_tahmin==2,0],X[Y_tahmin==2,1],s=100,c='blue')
 plt.show()
 
-
-
-
-
-
-
-
-
+import scipy.cluster.hierarchy as sch
+dendrogram=sch.dendrogram(sch.linkage(X,method='ward'))
+plt.show()
 
