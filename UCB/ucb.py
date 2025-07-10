@@ -58,8 +58,9 @@ for n in range(0,N):
             ad=i
          
     secilenler.append(ad)
-    tiklamalar[i]=tiklamalar
+    tiklamalar[ad]=tiklamalar[ad]+1
     odul=veriler.values[n,ad]
+    oduller[ad]=oduller[ad]+odul
     toplam=toplam+odul
 
 print("Toplam Odul: ")
@@ -67,7 +68,8 @@ print(toplam)
     
 plt.show()
     
-    
+plt.hist(secilenler)
+plt.show()
     
     
     
